@@ -85,7 +85,7 @@ func parse(value string) object {
 }
 
 func command(c string) (string, error) {
-	out, err := exec.Command("zsh", "-c", c).Output()
+	out, err := exec.Command("sh", "-c", c).Output()
 	if err != nil {
 		return "", err
 	}
