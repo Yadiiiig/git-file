@@ -21,9 +21,10 @@ const TMP_FOLDER_LOCATION = "tmp_git_file/"
 func main() {
 	args := os.Args
 
-	if len(args) < 1 {
+	if len(args) < 2 {
 		fmt.Println("Not enough arguments")
-	} else if len(args) < 2 {
+        os.Exit(0)
+	} else if len(args) < 3 {
 		args = append(args, ".")
 	}
 
@@ -40,7 +41,7 @@ func download(url, location string) error {
 	object := parse(url)
 	path := fmt.Sprintf("%s%s/", TMP_FOLDER_LOCATION, object.RepoName)
 
-	err := os.Mkdir(path, os.ModePerm)
+	err := os.MkdirAll(path, os.ModePerm)
 	if err != nil {
 		return err
 	}
